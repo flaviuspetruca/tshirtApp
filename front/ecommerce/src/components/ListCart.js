@@ -7,7 +7,7 @@ const ListCart = () => {
     const [refresh, setRefresh] = useState(0);
 
     const getContent = () => {
-      const items = JSON.parse(localStorage.getItem('items'));
+      let items = JSON.parse(localStorage.getItem('items'));
       if(items == null)
         items = '';
       setArticole(items);

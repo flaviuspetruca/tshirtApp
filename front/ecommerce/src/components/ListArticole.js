@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Articol from './Articol';
 
 
-const ListArticole = () => {
+const ListArticole = (isLogged) => {
     const [articols, setArticole] = useState([]);
   /* useEffect(() => {
     
@@ -37,6 +37,7 @@ const ListArticole = () => {
             pret={articol.pret}
             marime={articol.marime}
             productImage={articol.productImage}
+            isLogged={isLogged}
           />
         ))}
     </div>

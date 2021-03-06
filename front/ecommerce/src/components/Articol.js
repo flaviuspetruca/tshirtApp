@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom'
 
 Modal.setAppElement('#root');
-const Articol = ({id, tip, pret, marime, productImage}) => {
+const Articol = ({id, tip, pret, marime, productImage, isLogged}) => {
     
     const add = () => {
         let items = JSON.parse(localStorage.getItem("items") || "[]");
@@ -38,7 +38,6 @@ const Articol = ({id, tip, pret, marime, productImage}) => {
           overflow              : 'hidden',
         }
       };
-      var subtitle;
         const [modalIsOpen,setIsOpen] = React.useState(false);
         function openModal() {
             setIsOpen(true);
@@ -58,10 +57,20 @@ const Articol = ({id, tip, pret, marime, productImage}) => {
           style={customStyles}
           contentLabel="Example Modal"
         >
- 
-          <h2 className="text-center">Item added to cart</h2>
-          <button onClick={closeModal} className="btn btn-warning" >close</button>
-          <Link to={"/cart"}><button className="btn btn-primary">Go to cart</button></Link>
+        {isLogged.isLogged ?
+            <div>
+                <h2 className="text-center">Item added to cart</h2>
+                <button onClick={closeModal} className="btn btn-warning" >close</button>
+                <Link to={"/cart"}><button className="btn btn-primary">Go to cart</button></Link>
+            </div>
+        : 
+            <div>
+                <h2 className="text-center">You are not logged in!</h2>
+                <button onClick={closeModal} className="btn btn-warning" >close</button>
+                <Link to={"/signin"}><button className="btn btn-primary">Log in</button></Link>
+            </div>
+        }
+
         </Modal>
       </div>
             <div className="row articol">
@@ -70,7 +79,7 @@ const Articol = ({id, tip, pret, marime, productImage}) => {
                 <p>{pret} LEI</p>
                 <p>{marime}</p>
                 <img src={productImage} id="imagine"/>
-                <button onClick={function(event){ add(); openModal()}} type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="artCart">
+                <button onClick={e => {if(isLogged.isLogged){add(); openModal()}else{openModal()}}} type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="artCart">
                 Add to cart&nbsp;
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>

@@ -39,7 +39,7 @@ const SignIn = (isLogged) => {
 
     return(
         <div className="container">
-            {isLogged == true? <Redirect to="/"/>:
+            {isLogged.isLogged ? <Redirect to="/"/>:
             <div className="row articol">
                 <div className="col-sm-6 justify-content-center login">
                     <h3 className="display-4">Login</h3>
