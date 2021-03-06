@@ -19,7 +19,7 @@ A modal appears every time an item is added to cart.
 SignIn Register Cart components.
 Cart items are stored in the localStorage for limiting requests to the API.
 
-#### More work to be done on styling and remove some bugs when authenticated, implement Add to Cart only if user is logged in.
+#### More work to be done on styling and remove some bugs when authenticated.
 
 
 
